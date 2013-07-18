@@ -20,6 +20,11 @@ namespace Units
 
         #endregion
 
+        public Unit Unit
+        {
+            get { return unit; }
+        }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -66,6 +71,15 @@ namespace Units
             return !(q1 == q2);
         }
 
+        public static Quantity operator +(Quantity right)
+        {
+            return right;
+        }
+
+        public static Quantity operator +(Quantity left, Quantity right)
+        {
+            return new Quantity(left.amount + right.To(left.unit).amount, left.unit);
+        }
         #endregion
 
         public override string ToString()
@@ -75,7 +89,7 @@ namespace Units
 
         public Quantity To(Unit unit)
         {
-            return new Quantity(this.amount, unit);
+            return UnitManager.Convert(this, unit);
         }
 
         public Quantity Parse(string str)

@@ -30,6 +30,19 @@ namespace Units
             return symbol;
         }
 
+        public override int GetHashCode()
+        {
+            return this.symbol.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (this == (obj as Unit));
+        }
+        public bool Equals(Unit unit)
+        {
+            return (this == unit);
+        }
 
         public static bool operator ==(Unit unit1, Unit unit2)
         {
@@ -44,6 +57,11 @@ namespace Units
         public static bool operator !=(Unit unit1, Unit unit2)
         {
             return !(unit1 == unit2);
+        }
+
+        public bool IsCompatibleTo(Unit unit)
+        {
+            throw new NotImplementedException();
         }
 
         #region IComparable 멤버

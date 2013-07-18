@@ -26,5 +26,29 @@ namespace Units
                 return UnitManager.instance;
             }
         }
+
+        public static Quantity Convert(Quantity quantity, Unit toUnit)
+        {
+            try
+            {
+                if (Object.ReferenceEquals(quantity.Unit, toUnit))
+                {
+                    return quantity;
+                }
+
+                if (quantity.Unit.IsCompatibleTo(toUnit))
+                {
+                    throw new NotImplementedException();
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
