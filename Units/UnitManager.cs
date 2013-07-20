@@ -38,7 +38,7 @@ namespace Units
 
                 if (quantity.Unit.IsCompatibleTo(toUnit))
                 {
-                    throw new NotImplementedException();
+                    return new Quantity(quantity.Amount * quantity.Unit.Factor / toUnit.Factor, toUnit);
                 }
                 else
                 {

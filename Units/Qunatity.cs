@@ -20,6 +20,11 @@ namespace Units
 
         #endregion
 
+        public double Amount
+        {
+            get { return amount; }
+        }
+
         public Unit Unit
         {
             get { return unit; }
@@ -79,6 +84,11 @@ namespace Units
         public static Quantity operator +(Quantity left, Quantity right)
         {
             return new Quantity(left.amount + right.To(left.unit).amount, left.unit);
+        }
+
+        public static Quantity operator -(Quantity left, Quantity right)
+        {
+            return new Quantity(left.amount - right.To(left.unit).amount, left.unit);
         }
         #endregion
 

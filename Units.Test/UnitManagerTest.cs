@@ -12,13 +12,10 @@ namespace Units.Test
         [TestMethod]
         public void ConvertTest()
         {
-            Unit kg = new Unit("kg", "kg");
-            Unit g = new Unit("g", "kg");
+            Quantity kg_1 = new Quantity(1, SIUnit.MassUnits.kg);
+            Quantity g_1000 = UnitManager.Convert(kg_1, SIUnit.MassUnits.g);
 
-            Quantity kg_1 = new Quantity(1, kg);
-            Quantity g_1000 = UnitManager.Convert(kg_1, g);
-
-            Assert.AreEqual(kg_1, g_1000);
+            Assert.AreEqual(new Quantity(1000, SIUnit.MassUnits.g), g_1000);
         }
     }
 }

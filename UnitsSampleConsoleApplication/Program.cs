@@ -10,7 +10,7 @@ namespace UnitsSampleConsoleApplication
     {
         static void Main(string[] args)
         {
-            Quantity q = new Quantity(1, new Unit("test", "t/asd"));
+            Quantity q = new Quantity(1, Unit.None);
             Console.WriteLine(q);
 
             Console.WriteLine();

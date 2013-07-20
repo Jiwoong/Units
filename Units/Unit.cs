@@ -9,17 +9,36 @@ namespace Units
     {
         private string name;
         private string symbol;
-
+        private UnitType unitType;
+        private double factor;
         #region Contructor
 
-        public Unit(string name, string symbol)
+        public Unit(string name, string symbol, UnitType unitType)
+            : this(name, symbol, 1.0, unitType)
+        {
+        }
+
+        public Unit(string name, string symbol, Unit baseUnit)
+            : this(name, symbol, baseUnit.factor, baseUnit.unitType)
+        {
+
+        }
+
+        private Unit(string name, string symbol, double factor, UnitType unitType)
         {
             this.name = name;
             this.symbol = symbol;
+            this.factor = factor;
+            this.unitType = unitType;
         }
         #endregion
 
-        private static Unit none = new Unit(string.Empty, string.Empty);
+        public double Factor
+        {
+            get { return factor; }
+        }
+
+        private static Unit none = new Unit(string.Empty, string.Empty, UnitType.None);
         public static Unit None
         {
             get { return Unit.none; }
@@ -59,9 +78,17 @@ namespace Units
             return !(unit1 == unit2);
         }
 
+        public static Unit operator /(Unit left, double right)
+        {
+            left = left ?? Unit.None;
+            return new Unit(left.name + "/" + right.ToString(), left.symbol + "/" + right.ToString(), left.factor / right, left.unitType);
+        }
+
         public bool IsCompatibleTo(Unit unit)
         {
-            throw new NotImplementedException();
+            if (this.unitType == null || unit.unitType == null)
+                return false;
+            return this.unitType == (unit ?? Unit.none).unitType;
         }
 
         #region IComparable 멤버
