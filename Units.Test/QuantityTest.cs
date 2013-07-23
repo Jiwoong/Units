@@ -23,22 +23,29 @@ namespace Units.Test
             Quantity q2 = new Quantity(12, Unit.None);
 
             Assert.AreNotEqual(q, q2);
+
+
+            Quantity kg = new Quantity(1, SIUnit.MassUnits.kg);
+            Quantity g = new Quantity(1000, SIUnit.MassUnits.g);
+
+            Assert.AreEqual(kg, g);
+
+
         }
 
         [TestMethod]
         public void AdditionTest()
         {
-            Unit u = new Unit("killogram", "kg", SIUnit.SIUnitTypes.Mass);
-            Unit g = new Unit("gram", "g", u/1000);
-            Quantity q1 = new Quantity(1, u);
-            Quantity q2 = new Quantity(2, u);
+            Quantity q1 = new Quantity(1, SIUnit.MassUnits.kg);
+            Quantity q2 = new Quantity(2, SIUnit.MassUnits.kg);
 
-            Assert.AreEqual(q1 + q2, new Quantity(3, u));
-            Assert.AreNotEqual(q1 + q1, new Quantity(3, g));
+            Assert.AreEqual(new Quantity(3, SIUnit.MassUnits.kg), q1 + q2);
+            Assert.AreEqual(new Quantity(3, SIUnit.MassUnits.kg), q2 + q1);
 
-            Quantity q3 = new Quantity(1000, g);
+            Quantity q3 = new Quantity(1000, SIUnit.MassUnits.g);
 
-            Assert.AreEqual(q2, q1+q3);
+            Assert.AreEqual(new Quantity(2, SIUnit.MassUnits.kg), q1+q3);
+            Assert.AreEqual(new Quantity(2, SIUnit.MassUnits.kg), q3+q1);
         }
 
         [TestMethod]
@@ -56,6 +63,25 @@ namespace Units.Test
             Quantity q3 = new Quantity(1000, g);
 
             Assert.AreEqual(q1, q2 - q3);
+        }
+
+        [TestMethod]
+        public void MultiplicationTest()
+        {
+            Quantity q1 = new Quantity(1, SIUnit.MassUnits.kg);
+
+            Assert.AreEqual(new Quantity(123, SIUnit.MassUnits.kg), 123 * q1);
+            Assert.AreEqual(new Quantity(123, SIUnit.MassUnits.kg), q1 * 123);
+
+            Quantity q2 = new Quantity(10, SIUnit.MassUnits.kg);
+
+            Assert.AreEqual(new Quantity(10, SIUnit.MassUnits.kg * SIUnit.MassUnits.kg), q1 * q2);
+            Assert.AreEqual(new Quantity(10, SIUnit.MassUnits.kg * SIUnit.MassUnits.kg), q2 * q1);
+
+            Quantity q3 = new Quantity(1000, SIUnit.MassUnits.g);
+            Assert.AreEqual(new Quantity(1000, SIUnit.MassUnits.kg * SIUnit.MassUnits.g), q1 * q3);
+            Assert.AreEqual(new Quantity(1000, SIUnit.MassUnits.g * SIUnit.MassUnits.kg), q3 * q1);
+
         }
     }
 }

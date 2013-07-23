@@ -78,6 +78,11 @@ namespace Units
             return !(unit1 == unit2);
         }
 
+        public static Unit operator *(Unit left, Unit right)
+        {
+            return new Unit(left.name + "*" + right.name, left.symbol + "*" + right.symbol, left.unitType * right.unitType);
+        }
+
         public static Unit operator /(Unit left, double right)
         {
             left = left ?? Unit.None;

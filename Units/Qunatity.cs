@@ -51,13 +51,24 @@ namespace Units
         {
             if (Object.ReferenceEquals(q1, q2))
                 return true;
+
             else if (Object.ReferenceEquals(q1, null))
                 return false;
+
             else if (Object.ReferenceEquals(q2, null))
                 return false;
 
             try
             {
+                if (q2.unit.IsCompatibleTo(q1.unit))
+                {
+                    q2 = q2.To(q1.unit);
+                }
+                //else if (q1.unit.IsCompatibleTo(q2.unit))
+                //{
+                //    q1 = q1.To(q2.unit);
+                //}
+
                 // Check value
                 if (q1.amount != q2.amount)
                     return false;
@@ -89,6 +100,21 @@ namespace Units
         public static Quantity operator -(Quantity left, Quantity right)
         {
             return new Quantity(left.amount - right.To(left.unit).amount, left.unit);
+        }
+
+        public static Quantity operator *(Quantity left, Quantity right)
+        {
+            return new Quantity(left.amount * right.amount, left.unit * right.unit);
+        }
+
+        public static Quantity operator *(double left, Quantity right)
+        {
+            return new Quantity(left * right.amount, right.unit);
+        }
+
+        public static Quantity operator *(Quantity left, double right)
+        {
+            return new Quantity(left.amount * right, left.unit);
         }
         #endregion
 

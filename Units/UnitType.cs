@@ -22,5 +22,10 @@ namespace Units
             this.unitTypeName = unitTypeName;
         }
 
+        public static UnitType operator *(UnitType left, UnitType right)
+        {
+            return left;
+        }
+
     }
 }

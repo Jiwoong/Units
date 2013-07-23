@@ -49,6 +49,7 @@
     <Compile Include="QuantityTest.cs" />
     <Compile Include="UnitManagerTest.cs" />
     <Compile Include="UnitTest.cs" />
+    <Compile Include="UnitTypeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Units\Units.csproj">
