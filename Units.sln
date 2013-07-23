@@ -6,11 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Units.Test", "Units.Test\Units.Test.csproj", "{0E75058C-02ED-48CA-9324-011D365BF77E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED73E632-625F-45A3-B8CD-7531D9672E93}"
-	ProjectSection(SolutionItems) = preProject
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-		Units.vsmdi = Units.vsmdi
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsSampleConsoleApplication", "UnitsSampleConsoleApplication\UnitsSampleConsoleApplication.csproj", "{D708F6FE-034B-4881-B58E-8AEAB023F93D}"
 EndProject
